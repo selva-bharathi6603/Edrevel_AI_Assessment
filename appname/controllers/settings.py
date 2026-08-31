@@ -1,17 +1,14 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, Response, request
-from flask_login import login_required, current_user
+from flask import Blueprint, Response, flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required
 
-
-from appname.extensions import stripe
-from appname.models import db
-from appname.forms import SimpleForm
-from appname.forms.login import ChangePasswordForm
-from appname.forms.account import ChangeProfileForm
-from appname.helpers.gdpr import GDPRExport
-from appname.utils.token import generate_api_secret
 from appname.billing_plans import plans_by_name
-
-from appname.extensions import stripe, branding
+from appname.extensions import branding, stripe
+from appname.forms import SimpleForm
+from appname.forms.account import ChangeProfileForm
+from appname.forms.login import ChangePasswordForm
+from appname.helpers.gdpr import GDPRExport
+from appname.models import db
+from appname.utils.token import generate_api_secret
 
 settings_blueprint = Blueprint('user_settings', __name__)
 

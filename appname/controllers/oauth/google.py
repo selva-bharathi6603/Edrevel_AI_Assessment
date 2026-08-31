@@ -1,15 +1,14 @@
     # API
 from flask import flash
-from flask_login import current_user, login_user
-from flask_dance.contrib.google import make_google_blueprint
 from flask_dance.consumer import oauth_authorized, oauth_error
 from flask_dance.consumer.storage.sqla import SQLAlchemyStorage
+from flask_dance.contrib.google import make_google_blueprint
+from flask_login import current_user, login_user
 from sqlalchemy.orm.exc import NoResultFound
 
-from appname.models import db
 from appname.extensions import cache
-from appname.models.user import User, OAuth
-
+from appname.models import db
+from appname.models.user import OAuth, User
 
 blueprint = make_google_blueprint(
     scope=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email",

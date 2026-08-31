@@ -1,7 +1,7 @@
-from flask_restful import marshal_with
-from flask_restful import fields
+from flask_restful import fields, marshal_with
 
-from appname.api import Resource, BaseAPISchema, API_VERSION
+from appname.api import API_VERSION, BaseAPISchema, Resource
+
 
 class APISchema(BaseAPISchema):
     get_fields = {

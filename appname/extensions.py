@@ -2,23 +2,24 @@
 # import warnings
 # from flask.exthook import ExtDeprecationWarning
 # warnings.simplefilter('ignore', ExtDeprecationWarning)
-from flask_caching import Cache
-from flask_debugtoolbar import DebugToolbarExtension
-from flask_login import LoginManager
 from flask_assets import Environment
-# from flask_socketio import SocketIO
-from flask_wtf.csrf import CSRFProtect
-from flask_rq2 import RQ
-from flask_mail import Mail
+from flask_caching import Cache
+from flask_cloudy import Storage
+from flask_debugtoolbar import DebugToolbarExtension
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from flask_cloudy import Storage
+from flask_login import LoginManager
+from flask_mail import Mail
+from flask_rq2 import RQ
+
+# from flask_socketio import SocketIO
+from flask_wtf.csrf import CSRFProtect
 
 from appname.admin import AdminDashboard
+from appname.services.branding import Branding
+from appname.services.hash_ids import HashIds
 from appname.services.security import Token
 from appname.services.stripe import Stripe
-from appname.services.hash_ids import HashIds
-from appname.services.branding import Branding
 
 # Setup flask cache
 cache = Cache()

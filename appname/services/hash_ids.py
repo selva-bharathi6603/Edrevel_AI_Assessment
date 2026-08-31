@@ -1,5 +1,6 @@
 from hashids import Hashids
 
+
 class HashIds:
     def init_app(self, app):
         salt = app.config.get('SECRET_KEY', 'appname-hashids-secret')

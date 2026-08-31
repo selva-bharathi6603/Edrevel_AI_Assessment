@@ -1,11 +1,10 @@
-from flask import redirect, url_for, request
+import flask_admin as admin
+from flask import redirect, request, url_for
+from flask_admin.contrib import sqla
+from flask_admin.form import SecureForm
 from flask_login import current_user
 
-import flask_admin as admin
-from flask_admin.form import SecureForm
-from flask_admin.contrib import sqla
-
-from appname.models import db, ModelProxy
+from appname.models import ModelProxy, db
 from appname.models.user import User
 
 # Unfortunately, ModelProxy seems to be the only way to safely import other models

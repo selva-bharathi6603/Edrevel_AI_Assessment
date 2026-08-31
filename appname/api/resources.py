@@ -1,9 +1,9 @@
 from flask import redirect, url_for
-from flask_restful import abort
 
-from appname.api import api, api_blueprint, API_VERSION, API_BASE
+from appname.api import API_VERSION, api, api_blueprint
 from appname.api.info import APIInfo
 from appname.api.user import CurrentUserInfo
+
 
 @api_blueprint.record
 def record_params(setup_state):

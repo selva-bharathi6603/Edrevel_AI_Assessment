@@ -2,6 +2,7 @@ from werkzeug.routing import BaseConverter, ValidationError
 
 from appname.extensions import hashids
 
+
 class BoolConverter(BaseConverter):
     def __init__(self, url_map, false_value, true_value):
         super(BoolConverter, self).__init__(url_map)
@@ -20,7 +21,7 @@ class HashidConverter(BaseConverter):
         try:
             return hashids.decode_id(value)
         except (TypeError, ValueError) as e:
-            raise ValidationError(str(e))
+            raise ValidationError(str(e)) from e
 
     def to_url(self, value):
         return hashids.encode_id(value)

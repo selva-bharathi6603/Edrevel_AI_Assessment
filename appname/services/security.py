@@ -1,12 +1,16 @@
 import hashlib
+
 from itsdangerous import URLSafeTimedSerializer
+
 
 class Token:
     def init_app(self, app):
         self.app = app
         encoded_secret = app.config["SECRET_KEY"].encode()
         self.ts = URLSafeTimedSerializer(encoded_secret)
-        self.unique_salt = hashlib.md5(encoded_secret).hexdigest()[:5]
+        # Not used for cryptographic security - only to derive a short,
+        # deterministic salt suffix from the app's secret key.
+        self.unique_salt = hashlib.md5(encoded_secret, usedforsecurity=False).hexdigest()[:5]
 
     def generate(self, key, salt='default-salt'):
         return self.ts.dumps(key, salt + self.unique_salt)

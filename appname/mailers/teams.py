@@ -1,7 +1,9 @@
 from flask import render_template, url_for
 
-from appname.mailers import Mailer
 from appname.extensions import branding
+from appname.mailers import Mailer
+
+
 class InviteEmail(Mailer):
     TEMPLATE = 'email/teams/invite.html'
 

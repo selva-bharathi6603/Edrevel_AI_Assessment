@@ -1,13 +1,15 @@
 from datetime import datetime as dt
+
 from flask import render_template
 
 import appname.constants as constants
-from appname.mailers import Mailer
 from appname.extensions import token
+from appname.mailers import Mailer
+
 
 class PurchaseReceipt(Mailer):
     TEMPLATE = 'email/purchase_receipt.html'
-    DEFAULT_SUBJECT = "Your purchase of Ignite Starter"
+    DEFAULT_SUBJECT = "Your purchase of MyTemplate Starter"
 
     def send(self):
         key = "{email}-{timestamp}".format(email=self.recipient.email, timestamp=dt.now())

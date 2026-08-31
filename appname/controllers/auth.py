@@ -1,15 +1,14 @@
-from flask import Blueprint, render_template, flash, request, redirect, url_for, session, abort
-from flask_login import login_user, logout_user, login_required, current_user
+from flask import Blueprint, abort, flash, redirect, render_template, request, session, url_for
+from flask_login import current_user, login_required, login_user, logout_user
 
 import appname.constants as constants
-
+from appname.extensions import limiter, login_manager, token
 from appname.forms import SimpleForm
-from appname.forms.login import LoginForm, SignupForm, RequestPasswordResetForm, ChangePasswordForm
-from appname.models import db, get_or_none
-from appname.models.user import User
-from appname.models.teams import TeamMember
+from appname.forms.login import ChangePasswordForm, LoginForm, RequestPasswordResetForm, SignupForm
 from appname.mailers.auth import ConfirmEmail, ResetPassword
-from appname.extensions import login_manager, token, limiter
+from appname.models import db, get_or_none
+from appname.models.teams import TeamMember
+from appname.models.user import User
 
 auth = Blueprint('auth', __name__)
 

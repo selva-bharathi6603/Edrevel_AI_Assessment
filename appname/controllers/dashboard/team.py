@@ -1,13 +1,11 @@
-from flask import Blueprint, render_template, flash, abort, redirect, url_for, session
-from flask_login import login_required, current_user
+from flask import Blueprint, abort, flash, redirect, render_template, url_for
+from flask_login import current_user, login_required
 
-from appname.constants import MAX_TEAM_SIZE
-from appname.models import get_or_none
-from appname.models.teams import Team, TeamMember
 from appname.extensions import stripe
 from appname.forms import SimpleForm
 from appname.forms.teams import InviteMemberForm
-from appname.helpers.session import current_membership
+from appname.models import get_or_none
+from appname.models.teams import Team, TeamMember
 
 blueprint = Blueprint('dashboard_team', __name__)
 

@@ -6,8 +6,8 @@ import os
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy.query import Query as BaseQuery
-from sqlalchemy_utils import force_auto_coercion, force_instant_defaults
 from sqlalchemy import MetaData
+from sqlalchemy_utils import force_auto_coercion, force_instant_defaults
 
 convention = {
     "ix": 'ix_%(column_0_label)s',
@@ -173,7 +173,7 @@ def transaction(f):
             value = f(*args, **kwds)
             db.session.commit()
             return value
-        except:  # noqa; This is intentional to ensure we rollback
+        except Exception:  # noqa: E722 - intentional to ensure we rollback
             db.session.rollback()
             raise
     return wrapper

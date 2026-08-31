@@ -1,0 +1,10 @@
+exclude_dirs:
+  - tests
+  - env
+  - migrations
+  - tmp
+
+# B101 (assert used) is expected in test-adjacent helper code and is not a
+# real security issue on its own; everything else stays enabled.
+skips:
+  - B101

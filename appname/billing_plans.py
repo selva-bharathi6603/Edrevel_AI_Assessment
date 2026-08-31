@@ -1,8 +1,9 @@
-import os
 import logging
+import os
 
 from appname.extensions import stripe
-from appname.models import db, ModelProxy
+from appname.models import ModelProxy, db
+
 logger = logging.getLogger(__name__)
 
 METERED = 'metered_by_user'

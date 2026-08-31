@@ -1,7 +1,8 @@
-from wtforms import validators, StringField, PasswordField, HiddenField
+from wtforms import HiddenField, PasswordField, StringField, validators
 
 from appname.forms import BaseForm
 from appname.models.user import User
+
 
 class LoginForm(BaseForm):
     email = StringField('Email', validators=[validators.email(), validators.InputRequired()])
