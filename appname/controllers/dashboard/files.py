@@ -34,7 +34,7 @@ def add_file(team_id):
     form = FileForm()
 
     if form.validate_on_submit():
-        attachment = storage.upload(form.attachment.data)
+        attachment = storage.upload(form.attachment.data, extensions=storage.DOCUMENT + ["pdf"] + storage.IMAGE + storage.TEXT + storage.DATA)
 
         team_file = TeamFile(team=team, user=current_user, description=form.description.data,
                              file_name=attachment.info['name'],
