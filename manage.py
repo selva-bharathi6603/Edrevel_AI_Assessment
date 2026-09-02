@@ -72,6 +72,22 @@ def resetdb():
         seed_data()
 
 @app.cli.command()
+def demo_reset():
+    """ Non-interactive reset for the AWS demo environment: drops all
+        tables, recreates them, and seeds fresh demo users. Safe to run
+        on every deploy since demo data is disposable. Only runs against
+        the 'demo' environment as a safety check.
+    """
+    if env != 'demo':
+        click.echo("demo_reset only runs when APPNAME_ENV=demo, aborting.")
+        return
+    click.echo('Resetting demo database')
+    db.drop_all()
+    db.create_all()
+    seed_data()
+    click.echo('Demo database reset and seeded')
+
+@app.cli.command()
 def clear_cache():
     """ Flush the cache."""
     cache.clear()
