@@ -110,6 +110,10 @@ class DemoConfig(Config):
     CACHE_TYPE = 'SimpleCache'   # avoids needing ElastiCache/Redis
     RQ_ASYNC = False             # runs background jobs inline, no worker needed
 
+    STORAGE_PROVIDER = "LOCAL"
+    STORAGE_SERVER = True
+    STORAGE_SERVER_URL = "/demo-files"
+
     # EB single-instance env serves plain HTTP by default
     SESSION_COOKIE_SECURE = False
     REMEMBER_COOKIE_SECURE = False
