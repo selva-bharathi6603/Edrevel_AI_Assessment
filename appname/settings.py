@@ -90,3 +90,16 @@ class TestConfig(Config):
     CACHE_NO_NULL_WARNING = True
     WTF_CSRF_ENABLED = False
     RQ_ASYNC = False
+
+class DemoConfig(Config):
+    """Minimal AWS free-tier deployment config: SQLite + in-memory cache,
+    no RDS/Redis dependency. Not meant for real production use — see
+    ProdConfig for that. SESSION_COOKIE_SECURE is off because this demo
+    doesn't set up HTTPS/ACM; don't reuse this pattern with real user data.
+    """
+    ENV = 'prod'
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/demo.db'
+    CACHE_TYPE = 'SimpleCache'
+    SESSION_COOKIE_SECURE = False
+    REMEMBER_COOKIE_SECURE = False
