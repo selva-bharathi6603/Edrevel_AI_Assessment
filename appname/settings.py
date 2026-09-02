@@ -59,24 +59,6 @@ class ProdConfig(Config):
     SESSION_COOKIE_SECURE = True
     REMEMBER_COOKIE_SECURE = True
 
-class DemoConfig(Config):
-    ENV = 'demo'
-    DEBUG = False
-
-    # Falls back to SQLite so this runs on a single free-tier instance
-    # with no RDS needed. Point DATABASE_URL at Postgres later if you want
-    # data to persist across deploys.
-    SQLALCHEMY_DATABASE_URI = os.getenv(
-        'DATABASE_URL', 'sqlite:////tmp/database.db'
-    ).replace("postgres://", "postgresql://", 1)
-
-    CACHE_TYPE = 'SimpleCache'   # avoids needing ElastiCache/Redis
-    RQ_ASYNC = False             # runs background jobs inline, no worker needed
-
-    # EB single-instance env serves plain HTTP by default
-    SESSION_COOKIE_SECURE = False
-    REMEMBER_COOKIE_SECURE = False
-
 class DevConfig(Config):
     ENV = 'dev'
     DEBUG = True
@@ -115,9 +97,19 @@ class DemoConfig(Config):
     ProdConfig for that. SESSION_COOKIE_SECURE is off because this demo
     doesn't set up HTTPS/ACM; don't reuse this pattern with real user data.
     """
-    ENV = 'prod'
+    ENV = 'demo'
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/demo.db'
-    CACHE_TYPE = 'SimpleCache'
+
+    # Falls back to SQLite so this runs on a single free-tier instance
+    # with no RDS needed. Point DATABASE_URL at Postgres later if you want
+    # data to persist across deploys.
+    SQLALCHEMY_DATABASE_URI = os.getenv(
+        'DATABASE_URL', 'sqlite:////tmp/database.db'
+    ).replace("postgres://", "postgresql://", 1)
+
+    CACHE_TYPE = 'SimpleCache'   # avoids needing ElastiCache/Redis
+    RQ_ASYNC = False             # runs background jobs inline, no worker needed
+
+    # EB single-instance env serves plain HTTP by default
     SESSION_COOKIE_SECURE = False
     REMEMBER_COOKIE_SECURE = False
