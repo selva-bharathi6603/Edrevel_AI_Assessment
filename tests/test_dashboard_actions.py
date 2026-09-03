@@ -300,7 +300,7 @@ class TestDashboardActions:
         user, team, team_hash = user_team_and_hash()
         user_id = user.id
 
-        monkeypatch.setattr(storage, "upload", lambda _: DummyUpload(name="report.txt", object_name="file-1"))
+        monkeypatch.setattr(storage, "upload", lambda *args, **kwargs: DummyUpload(name="report.txt", object_name="file-1"))
 
         response = testapp.post(
             f"/dashboard/{team_hash}/files/add_file",
