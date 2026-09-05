@@ -2,6 +2,12 @@
 
 # MyTemplate for Flask [![MyTemplate CI](https://github.com/selva-bharathi6603/Edrevel_AI_Assessment/actions/workflows/ci.yml/badge.svg)](https://github.com/selva-bharathi6603/Edrevel_AI_Assessment/actions/workflows/ci.yml)
 
+## Live Demo
+
+🔗 **http://mytemplate-env.eba-bmduu7pa.ap-south-1.elasticbeanstalk.com**
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for deployment details, architecture, and known limitations.
+
 MyTemplate is a scaffold for starting new SaaS applications built using Python and Flask. It is renamed and
 customized from the open-source [Ignite](https://github.com/sumukh/ignite) starter template as part of a
 DevOps/QA candidate assessment, and takes care of the boilerplate code (User Registration, OAuth, Teams,
